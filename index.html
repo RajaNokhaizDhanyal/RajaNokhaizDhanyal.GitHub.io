@@ -4,7 +4,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raja Earn Platform</title>
+<title>Raja Earn Platform</title>input{
+ width:100%;
+ padding:12px;
+ margin:10px 0;
+ border:1px solid #555;
+ border-radius:8px;
+}
+button{
+ width:100%;
+ padding:12px;
+ background:#ffd700;
+ color:#111;
+ border:0;
+ border-radius:8px;
+ font-weight:bold;
+}
+.hidden{display:none}
 <style>
 *{box-sizing:border-box}
 body{
@@ -51,5 +67,28 @@ h2{color:#ffd700}
 </div>
 </div>
 
-</body>
+<script>
+function login(){
+ const name=document.getElementById("username").value.trim();
+ if(name.length<2){
+  alert("Please enter your name");
+  return;
+ }
+ document.getElementById("name").textContent=name;
+ document.getElementById("loginBox").classList.add("hidden");
+ document.getElementById("dashboard").classList.remove("hidden");
+}
+</script></body>
 </html>
+<div class="container">
+
+<div class="card" id="loginBox">
+<h2>👤 Create Account</h2>
+<input id="username" type="text" placeholder="Enter your name">
+<button onclick="login()">Login / Account Banao</button>
+</div>
+
+<div class="card hidden" id="dashboard">
+<h2>Welcome, <span id="name"></span> 👑</h2>
+<p>Welcome to Raja Earn!</p>
+</div>

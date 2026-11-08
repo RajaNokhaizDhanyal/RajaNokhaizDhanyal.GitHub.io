@@ -1,11 +1,55 @@
-function dailyBonus(){
-  if(!currentUser){alert("Pehle Login karo!");return;}
-  let today=new Date().toDateString();
-  let last=localStorage.getItem("bonus_"+currentUser);
-  if(last===today){alert("Aaj ka Bonus le liya! Kal ana");return;}
-  localStorage.setItem("bonus_"+currentUser,today);
-  points+=100;
-  localStorage.setItem("points_"+currentUser,points);
-  document.getElementById("pointsText").innerText="Points: "+points+" ⭐";
-  alert("Mubarak! +100 Bonus mil gaya 🎁");
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raja Earn Platform</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#101010;
+ color:white;
+ font-family:Arial,sans-serif;
 }
+header{
+ background:#1b1608;
+ color:#ffd700;
+ text-align:center;
+ padding:25px 10px;
+ border-bottom:2px solid #d5a900;
+}
+header h1{margin:0;font-size:28px}
+header p{color:white}
+.container{
+ max-width:600px;
+ margin:auto;
+ padding:15px;
+}
+.card{
+ background:#222;
+ padding:20px;
+ border:1px solid #444;
+ border-radius:15px;
+ margin-bottom:16px;
+}
+h2{color:#ffd700}
+</style>
+</head>
+<body>
+
+<header>
+<h1>👑 Raja Earn Platform</h1>
+<p>Learn • Complete Tasks • Earn Rewards</p>
+</header>
+
+<div class="container">
+<div class="card">
+<h2>Welcome to Raja Earn</h2>
+<p>Your rewards journey starts here!</p>
+</div>
+</div>
+
+</body>
+</html>

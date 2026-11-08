@@ -1,78 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raja Earn Platform</title>
-<style>
-body{background:#111;color:white;font-family:Arial;text-align:center;margin:0}
-.header{background:#1a1200;padding:20px;border-bottom:3px solid gold}
-h1{color:#ffd700}
-.box{background:#222;margin:15px;padding:20px;border-radius:15px;border:1px solid #555;text-align:left}
-input{width:100%;padding:12px;margin:10px 0;border:1px solid #555;border-radius:8px;box-sizing:border-box}
-button{width:100%;padding:12px;background:#ffd700;color:#111;border:0;border-radius:8px;font-weight:bold;font-size:16px;margin:5px 0}
-.hidden{display:none}
-</style>
-</head>
-<body>
-
 <div class="header">
 <h1>👑 Raja Earn Platform</h1>
 <p>Learn • Complete Tasks • Earn Rewards</p>
+<div style="background:linear-gradient(90deg,#ffd700,#ff8c00); color:#111; padding:12px; border-radius:20px; margin-top:15px; font-weight:bold; font-size:19px; box-shadow:0 0 15px #ffd700;">
+✨ 👑 Raja Nokhaiz Dhanyal 👑 ✨
 </div>
-
-<div class="box">
-<h2 style="color:#ffd700">Welcome to Raja Earn</h2>
-<p>Your rewards journey starts here!</p>
+<p style="color:#ffd700; font-size:13px; margin-top:8px;">Owner & Founder | Welcome to my Official Platform ❤️</p>
 </div>
-
-<div class="box" id="loginBox">
-<h2 style="color:#ffd700">👤 Create Account</h2>
-<input id="nameInput" placeholder="Enter your name">
-<button onclick="login()">Login / Account Banao</button>
-</div>
-
-<div class="box" id="welcomeBox">
-<h2 style="color:#ffd700">Welcome, <span id="userName"></span> 👑</h2>
-<p>Welcome to Raja Earn!</p>
-<h3>Points: <span id="points">0</span></h3>
-<p>Total Tasks: <span id="tasks">0</span></p>
-<button onclick="doTask()">Task Complete Karo +10 Points</button>
-<button onclick="logout()">Logout</button>
-</div>
-
-<script>
-let points = localStorage.getItem('points') || 0;
-let name = localStorage.getItem('name') || '';
-let tasks = localStorage.getItem('tasks') || 0;
-
-function show(){
-  document.getElementById('points').innerText = points;
-  document.getElementById('tasks').innerText = tasks;
-  document.getElementById('userName').innerText = name;
-  if(name){
-    document.getElementById('loginBox').style.display='none';
-  }
-}
-function login(){
-  let n = document.getElementById('nameInput').value;
-  if(!n){ alert('Pehle naam likho!'); return; }
-  name = n;
-  localStorage.setItem('name', name);
-  show();
-}
-function doTask(){
-  points = parseInt(points)+10;
-  tasks = parseInt(tasks)+1;
-  localStorage.setItem('points', points);
-  localStorage.setItem('tasks', tasks);
-  show();
-  alert('Mubarak! +10 Points mil gaye');
-}
-function logout(){
-  localStorage.clear();
-  location.reload();
-}
-show();
-</script>
-</body>
-</html>

@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Raja Nokhaiz Dhanyal</title>
+<title>Raja Earn Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:Arial;text-align:center;background:#f2f2f2;padding:30px}
-.box{background:white;padding:20px;border-radius:10px}
+body{font-family:Arial;background:#0f0f0f;color:white;margin:0}
+.header{background:#ffcc00;color:black;padding:15px;text-align:center}
+.box{background:#1e1e1e;margin:15px;padding:15px;border-radius:12px}
+button{background:#ffcc00;border:none;padding:12px;width:100%;border-radius:8px;font-weight:bold;margin-top:10px}
+input{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:none}
+.task,.video{background:#2a2a2a;padding:12px;border-radius:10px;margin-top:10px;text-align:center}
 </style>
 </head>
 <body>
-<div class="box">
-<h1>Raja Nokhaiz Dhanyal</h1>
-<p>Welcome to my personal website.</p>
-<p>I am from Pakistan.</p>
-</div>
+<div class="header"><h1>👑 Raja Earn Platform</h1><p>Videos Dekho - Tasks Karo - Points Jeeto</p></div><div class="box"><h3>👤 Mera Account</h3><input id="nameInput" placeholder="Apna Naam Likho"><button onclick="saveName()">Login / Account Banao</button><p id="welcome"></p><h2 style="text-align:center;color:#ffcc00">Points: <span id="points">0</span> ⭐</h2></div>
+
+<div class="box"><h3>🎬 Videos & Posts</h3><div class="video"><p>🔥 Trending Video 1</p><button onclick="earn(50)">Video Dekho +50 Points</button></div><div class="video"><p>🔥 Trending Video 2</p><button onclick="earn(50)">Video Dekho +50 Points</button></div></div>
+
+<div class="box"><h3>✅ Online Tasks</h3><div class="task"><b>Task 1:</b> Website 1 Minute Kholo<br><button onclick="earn(20)">Complete +20</button></div><div class="task"><b>Task 2:</b> 1 Dost Ko Link Bhejo<br><button onclick="earn(30)">Complete +30</button></div><div class="task"><b>Task 3:</b> Daily Check-In<br><button onclick="earn(100)">Daily Bonus +100</button></div></div><div class="box"><h3>🛠️ Admin Dashboard</h3><p>Sirf Admin: Raja Nokhaiz Dhanyal</p><p>Total Points: <span id="totalPoints">0</span></p></div>
+<div class="box" style="text-align:center">© 2026 Raja Earn Platform<br>Pehle points jama karo.</div>
+<script>
+let points = localStorage.getItem('points') || 0;
+document.getElementById('points').innerText = points;
+document.getElementById('totalPoints').innerText = points;
+let savedName = localStorage.getItem('myname');
+if(savedName){ document.getElementById('welcome').innerText = 'Welcome, ' + savedName + ' 👑'; }
+function saveName(){ let n = document.getElementById('nameInput').value; if(n==""){ alert('Naam likho pehle'); return; } localStorage.setItem('myname', n); document.getElementById('welcome').innerText = 'Welcome, ' + n + ' 👑'; alert('Account Ban Gaya! Welcome ' + n); }
+function earn(p){ points = parseInt(points) + p; localStorage.setItem('points', points); document.getElementById('points').innerText = points; document.getElementById('totalPoints').innerText = points; alert('Mubarak! +' + p + ' Points mil gaye ⭐'); }
+</script>
 </body>
 </html>

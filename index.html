@@ -1,109 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raja Earn Platform</title>
-<style>
-body{margin:0;font-family:Arial;background:#111;color:white;text-align:center}
-.header{background:#FFD700;color:black;padding:20px}
-.header h1{margin:0;font-size:28px}
-.box{background:#222;margin:15px;padding:20px;border-radius:15px;text-align:left}
-input{width:100%;padding:12px;border-radius:10px;border:none;margin:10px 0;font-size:16px;box-sizing:border-box}
-button{width:100%;padding:13px;background:#FFD700;border:none;border-radius:10px;font-weight:bold;font-size:16px;margin-top:8px;cursor:pointer}
-.points{text-align:center;color:#FFD700;font-size:28px;font-weight:bold}
-.video{background:#333;padding:15px;border-radius:12px;margin-top:12px;text-align:center}
-.logout{background:#555;color:white}
-.withdraw{background:#00c853;color:white}
-</style>
-</head>
-<body>
-<div class="header">
-<h1>👑 Raja Earn Platform</h1>
-<p>Videos Dekho - Tasks Karo - Points Jeeto</p>
-</div>
-<div class="box">
-<h2>👤 Mera Account</h2>
-<input type="text" id="nameInput" placeholder="Apna Naam Likho">
-<button onclick="login()">Login / Account Banao</button>
-<p id="welcome"></p>
-<p class="points" id="pointsText">Points: 0 ⭐</p>
-<button class="logout" onclick="logout()">Logout</button>
-</div>
-<div class="box">
-<h2>🎬 Videos & Posts</h2>
-<div class="video">
-<p>🔥 Trending Video 1</p>
-<button onclick="addPoints()">Video Dekho +50 Points</button>
-</div>
-<div class="video">
-<p>🔥 Trending Video 2</p>
-<button onclick="addPoints()">Video Dekho +50 Points</button>
-</div>
-</div>
-<div class="box">
-<h2>💰 Withdraw</h2>
-<p>1000 Points = 100 Rs</p>
-<input type="text" id="numberInput" placeholder="JazzCash / EasyPaisa Number">
-<button class="withdraw" onclick="withdraw()">Withdraw Request Bhejo</button>
-<p id="withdrawMsg"></p>
-</div>
-<script>
-let currentUser = localStorage.getItem("raja_current_user") || "";
-let points = 0;
-function getPoints(name){
-  let p = localStorage.getItem("points_" + name);
-  if(p !== null) return parseInt(p);
-  let old = localStorage.getItem("points");
-  if(old !== null) return parseInt(old);
-  return 0;
+function dailyBonus(){
+  if(!currentUser){alert("Pehle Login karo!");return;}
+  let today=new Date().toDateString();
+  let last=localStorage.getItem("bonus_"+currentUser);
+  if(last===today){alert("Aaj ka Bonus le liya! Kal ana");return;}
+  localStorage.setItem("bonus_"+currentUser,today);
+  points+=100;
+  localStorage.setItem("points_"+currentUser,points);
+  document.getElementById("pointsText").innerText="Points: "+points+" ⭐";
+  alert("Mubarak! +100 Bonus mil gaya 🎁");
 }
-function loadUser(){
-  if(currentUser){
-    document.getElementById("nameInput").value = currentUser;
-    document.getElementById("welcome").innerText = "Welcome, " + currentUser + " 👑";
-    points = getPoints(currentUser);
-    document.getElementById("pointsText").innerText = "Points: " + points + " ⭐";
-  } else {
-    let old = localStorage.getItem("points");
-    if(old){ points = parseInt(old); document.getElementById("pointsText").innerText = "Points: " + points + " ⭐"; }
-  }
-}
-loadUser();
-function login(){
-  let name = document.getElementById("nameInput").value.trim();
-  if(name==""){ alert("Pehle naam likho!"); return; }
-  currentUser = name;
-  localStorage.setItem("raja_current_user", name);
-  points = getPoints(name);
-  localStorage.setItem("points_" + name, points);
-  document.getElementById("welcome").innerText = "Welcome, " + name + " 👑";
-  document.getElementById("pointsText").innerText = "Points: " + points + " ⭐";
-  alert("Welcome " + name + "! 👑");
-}
-function addPoints(){
-  if(!currentUser){ alert("Pehle Login karo!"); return; }
-  points += 50;
-  localStorage.setItem("points_" + currentUser, points);
-  localStorage.setItem("points", points);
-  document.getElementById("pointsText").innerText = "Points: " + points + " ⭐";
-  alert("Mubarak! +50 Points mil gaye ⭐");
-}
-function logout(){
-  localStorage.removeItem("raja_current_user");
-  currentUser = "";
-  document.getElementById("nameInput").value = "";
-  document.getElementById("welcome").innerText = "";
-  alert("Logout ho gaya!");
-}
-function withdraw(){
-  if(!currentUser){ alert("Pehle Login karo!"); return; }
-  if(points < 1000){ alert("Withdraw ke liye 1000 Points chahiye! Abhi aap ke " + points + " hain."); return; }
-  let num = document.getElementById("numberInput").value.trim();
-  if(num==""){ alert("Apna Number likho!"); return; }
-  alert("Withdraw Request Mil Gayi! " + points + " Points - Number: " + num + " - Raja Sahab jald rabta karenge 👑");
-  document.getElementById("withdrawMsg").innerText = "Request mil gayi! ✅";
-}
-</script>
-</body>
-</html>
